@@ -1,0 +1,9 @@
+anyframe-source-hostname -n \
+  | anyframe-selector-auto \
+  | awk '{print $1}' \
+  | anyframe-action-execute ssh
+
+# Local Variables:
+# mode: Shell-Script
+# End:
+# vim: ft=zsh

@@ -1,0 +1,16 @@
+# require ghq (https://github.com/motemen/ghq)
+
+h=()
+if [[ -r ~/.ssh/config ]]; then
+  h=($h ${${${(@M)${(f)"$(cat ~/.ssh/config)"}:#Host *}#Host }:#*[*?]*})
+fi
+if [[ -r ~/.ssh/known_hosts ]]; then
+  h=($h ${${${(f)"$(cat ~/.ssh/known_hosts{,2} || true)"}%%\ *}%%,*}) 2>/dev/null
+fi
+
+echo $h | tr ' ' '\n'
+
+# Local Variables:
+# mode: Shell-Script
+# End:
+# vim: ft=zsh
